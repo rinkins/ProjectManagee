@@ -26,32 +26,40 @@ namespace ManageProject
             this.Text = "Управление проектами";
             this.Width = 600;
             this.Height = 500;
+
             nameTextBox = new TextBox
             {
                 Location = new System.Drawing.Point(10, 10),
                 Width = 150,
                 Text = "Название"
             };
+
             descriptionTextBox = new TextBox
             {
                 Location = new System.Drawing.Point(170, 10),
                 Width = 200,
                 Text = "Описание"
             };
+
             startDatePicker = new DateTimePicker
             {
-                Location = new System.Drawing.Point(10, 40)
+                Location = new System.Drawing.Point(10, 40),
+                Width = 125
             };
+
             endDatePicker = new DateTimePicker
             {
-                Location = new System.Drawing.Point(170, 40)
+                Location = new System.Drawing.Point(150, 40),
+                Width = 125
             };
+
             progressTextBox = new TextBox
             {
-                Location = new System.Drawing.Point(380, 40),
-                Width = 50,
+                Location = new System.Drawing.Point(285, 40),
+                Width = 65,
                 Text = "Прогресс"
             };
+
             addProjectButton = new Button
             {
                 Location = new System.Drawing.Point(10, 70),
@@ -59,13 +67,15 @@ namespace ManageProject
                 Width = 100
             };
             addProjectButton.Click += AddProjectButton_Click;
+
             removeProjectButton = new Button
             {
-                Location = new System.Drawing.Point(120, 70),
+                Location = new System.Drawing.Point(115, 70),
                 Text = "Удалить",
                 Width = 100
             };
             removeProjectButton.Click += RemoveProjectButton_Click;
+
             updateProgressButton = new Button
             {
                 Location = new System.Drawing.Point(220, 70),
@@ -73,6 +83,7 @@ namespace ManageProject
                 Width = 120
             };
             updateProgressButton.Click += UpdateProgressButton_Click;
+
             projectsListBox = new ListBox
             {
                 Location = new System.Drawing.Point(10, 100),
