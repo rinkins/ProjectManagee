@@ -27,7 +27,9 @@ namespace ManageProject
             {
                 throw new Exception ("Прогресс должен быть между 0 и 100");
             }
+
             Progress = newProgress;
+
         }
     }
 }

@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Drawing;
 using System.Reflection.Emit;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace ManageProject
@@ -14,15 +15,16 @@ namespace ManageProject
     partial class ProjectForm : Form
     {
         private ProjectManager projectManager;
-        private TextBox nameTextBox;
-        private TextBox descriptionTextBox;
+        private System.Windows.Forms.TextBox nameTextBox;
+        private System.Windows.Forms.TextBox descriptionTextBox;
         private DateTimePicker startDatePicker;
         private DateTimePicker endDatePicker;
-        private TextBox progressTextBox;
-        private Button addProjectButton;
-        private Button removeProjectButton;
-        private Button updateProgressButton;
+        private System.Windows.Forms.TextBox progressTextBox;
+        private System.Windows.Forms.Button addProjectButton;
+        private System.Windows.Forms.Button removeProjectButton;
+        private System.Windows.Forms.Button updateProgressButton;
         private ListBox projectsListBox;
+
         public ProjectForm()
         {
             this.Text = "Управление проектами";
@@ -32,7 +34,9 @@ namespace ManageProject
             this.MaximizeBox = false;
             this.BackColor = Color.Lavender;
 
-            nameTextBox = new TextBox
+
+
+            nameTextBox = new System.Windows.Forms.TextBox
             {
                 Location = new System.Drawing.Point(10, 10),
                 Width = 150,
@@ -41,7 +45,9 @@ namespace ManageProject
                 ForeColor = System.Drawing.Color.MidnightBlue
             };
 
-            descriptionTextBox = new TextBox
+            nameTextBox.KeyPress += new KeyPressEventHandler(nameTextBox_KeyPress);
+
+            descriptionTextBox = new System.Windows.Forms.TextBox
             {
                 Location = new System.Drawing.Point(170, 10),
                 Width = 200,
@@ -49,6 +55,8 @@ namespace ManageProject
                 Font = new System.Drawing.Font("Candara", 10),
                 ForeColor = System.Drawing.Color.MidnightBlue
             };
+
+            descriptionTextBox.KeyPress += new KeyPressEventHandler(descriptionTextBox_KeyPress);
 
             startDatePicker = new DateTimePicker
             {
@@ -66,7 +74,7 @@ namespace ManageProject
                 ForeColor = System.Drawing.Color.MidnightBlue
             };
 
-            progressTextBox = new TextBox
+            progressTextBox = new System.Windows.Forms.TextBox
             {
                 Location = new System.Drawing.Point(305, 40),
                 Width = 65,
@@ -76,7 +84,7 @@ namespace ManageProject
                 TextAlign = HorizontalAlignment.Center
             };
 
-            addProjectButton = new Button
+            addProjectButton = new System.Windows.Forms.Button
             {
                 Location = new System.Drawing.Point(10, 70),
                 Text = "Добавить",
@@ -87,7 +95,7 @@ namespace ManageProject
             };
             addProjectButton.Click += AddProjectButton_Click;
 
-            removeProjectButton = new Button
+            removeProjectButton = new System.Windows.Forms.Button
             {
                 Location = new System.Drawing.Point(115, 70),
                 Text = "Удалить",
@@ -98,7 +106,7 @@ namespace ManageProject
             };
             removeProjectButton.Click += RemoveProjectButton_Click;
 
-            updateProgressButton = new Button
+            updateProgressButton = new System.Windows.Forms.Button
             {
                 Location = new System.Drawing.Point(220, 70),
                 Text = "Обновить прогресс",
@@ -128,6 +136,31 @@ namespace ManageProject
             this.Controls.Add(projectsListBox);
             projectManager = new ProjectManager();
             UpdateProjectsList();
+        }
+
+        private void nameTextBox_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        {
+
+            if (!IsCyrillic(e.KeyChar))
+            {
+                e.Handled = true; 
+            }
+
+        }
+        private void descriptionTextBox_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        {
+
+            if (!IsCyrillic(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+        }
+        private bool IsCyrillic(char c)
+        {
+            return (c >= 'а' && c <= 'я') || 
+                   (c >= 'А' && c <= 'Я') || 
+                   c == 'ё' || c == 'Ё'; 
         }
         private void UpdateProjectsList()
         {
@@ -193,6 +226,8 @@ namespace ManageProject
                 }
             }
         }
+
+     
         private void UpdateProgressButton_Click(object sender, EventArgs e)
         {
             if (projectsListBox.SelectedIndex == -1)
