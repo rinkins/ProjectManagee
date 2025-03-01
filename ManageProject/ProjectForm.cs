@@ -27,6 +27,7 @@ namespace ManageProject
 
         public ProjectForm()
         {
+            // Настройки формы
             this.Text = "Управление проектами";
             this.Width = 437;
             this.Height = 405;
@@ -35,7 +36,7 @@ namespace ManageProject
             this.BackColor = Color.Lavender;
 
 
-
+            // Настройки поля ввода названия
             nameTextBox = new System.Windows.Forms.TextBox
             {
                 Location = new System.Drawing.Point(10, 10),
@@ -47,6 +48,7 @@ namespace ManageProject
 
             nameTextBox.KeyPress += new KeyPressEventHandler(nameTextBox_KeyPress);
 
+            // Настройки поля ввода описания
             descriptionTextBox = new System.Windows.Forms.TextBox
             {
                 Location = new System.Drawing.Point(170, 10),
@@ -58,6 +60,7 @@ namespace ManageProject
 
             descriptionTextBox.KeyPress += new KeyPressEventHandler(descriptionTextBox_KeyPress);
 
+            // Настройки поля ввода даты начала
             startDatePicker = new DateTimePicker
             {
                 Location = new System.Drawing.Point(10, 40),
@@ -66,6 +69,7 @@ namespace ManageProject
                 ForeColor = System.Drawing.Color.MidnightBlue
             };
 
+            // Настройки поля ввода даты конца
             endDatePicker = new DateTimePicker
             {
                 Location = new System.Drawing.Point(160, 40),
@@ -74,6 +78,7 @@ namespace ManageProject
                 ForeColor = System.Drawing.Color.MidnightBlue
             };
 
+            // Настройки поля ввода процесса
             progressTextBox = new System.Windows.Forms.TextBox
             {
                 Location = new System.Drawing.Point(305, 40),
@@ -84,6 +89,7 @@ namespace ManageProject
                 TextAlign = HorizontalAlignment.Center
             };
 
+            // Кнопка добавить
             addProjectButton = new System.Windows.Forms.Button
             {
                 Location = new System.Drawing.Point(10, 70),
@@ -95,6 +101,7 @@ namespace ManageProject
             };
             addProjectButton.Click += AddProjectButton_Click;
 
+            // Кнопка удалить
             removeProjectButton = new System.Windows.Forms.Button
             {
                 Location = new System.Drawing.Point(115, 70),
@@ -106,6 +113,7 @@ namespace ManageProject
             };
             removeProjectButton.Click += RemoveProjectButton_Click;
 
+            // Кнопка обновить процесс
             updateProgressButton = new System.Windows.Forms.Button
             {
                 Location = new System.Drawing.Point(220, 70),
@@ -117,6 +125,7 @@ namespace ManageProject
             };
             updateProgressButton.Click += UpdateProgressButton_Click;
 
+            // Настройки поля вывода проектов
             projectsListBox = new ListBox
             {
                 Location = new System.Drawing.Point(10, 110),
@@ -137,7 +146,7 @@ namespace ManageProject
             projectManager = new ProjectManager();
             UpdateProjectsList();
         }
-
+        // Ограничение для названия - ввод только кириллицы
         private void nameTextBox_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
         {
 
@@ -147,6 +156,7 @@ namespace ManageProject
             }
 
         }
+        // Ограничение для описания - ввод только кириллицы
         private void descriptionTextBox_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
         {
 
@@ -156,12 +166,14 @@ namespace ManageProject
             }
 
         }
+        // Кириллица
         private bool IsCyrillic(char c)
         {
             return (c >= 'а' && c <= 'я') || 
                    (c >= 'А' && c <= 'Я') || 
                    c == 'ё' || c == 'Ё'; 
         }
+        // Обновление проекта
         private void UpdateProjectsList()
         {
             projectsListBox.Items.Clear();
@@ -170,6 +182,7 @@ namespace ManageProject
                 projectsListBox.Items.Add($"{project.Name} - Прогресс: {project.Progress}%");
             }
         }
+        // Добавление проекта
         private void AddProjectButton_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(nameTextBox.Text) ||
@@ -199,6 +212,7 @@ namespace ManageProject
                 MessageBox.Show(ex.Message);
             }
         }
+        //Удаление проекта
         private void RemoveProjectButton_Click(object sender, EventArgs e)
         {
             if (projectsListBox.SelectedIndex == -1)
@@ -227,7 +241,7 @@ namespace ManageProject
             }
         }
 
-     
+        // Обновление процесса
         private void UpdateProgressButton_Click(object sender, EventArgs e)
         {
             if (projectsListBox.SelectedIndex == -1)

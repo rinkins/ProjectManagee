@@ -16,6 +16,7 @@ namespace ManageProject
                 Projects = new List<Project>();
                 LoadProjects();
             }
+            // Метод добавления проекта
             public void AddProject(Project project)
             {
                 if (project == null)
@@ -25,6 +26,7 @@ namespace ManageProject
                 Projects.Add(project);
                 SaveProjects();
             }
+            // Метод удавления проекта
             public void RemoveProject(Project project)
             {
                 if (project == null)
@@ -34,6 +36,7 @@ namespace ManageProject
                 Projects.Remove(project);
                 SaveProjects();
             }
+            // Метод обновления проекта  
             public void UpdateProjectProgress(Project project, int newProgress)
             {
                 if (project == null)
@@ -43,11 +46,13 @@ namespace ManageProject
                 project.UpdateProgress(newProgress);
                 SaveProjects();
             }
+            // Метод сохранения в файл
             private void SaveProjects()
             {
                 File.WriteAllLines("projects.txt", Projects.Select
                 (p => $"{p.Name}|{p.Description}|{p.StartDate.ToString("yyyy-MM-dd")}|{p.EndDate.ToString("yyyyMM-dd")}|{p.Progress}"));
             }
+             // Метод считывания из файла
             private void LoadProjects()
             {
                 if (File.Exists("projects.txt"))

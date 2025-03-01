@@ -8,6 +8,7 @@ namespace ManageProject
 {
     public class Project
     {
+        // Инициализация элементов
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime StartDate { get; set; }
@@ -21,6 +22,8 @@ namespace ManageProject
             EndDate = endDate;
             Progress = 0;
         }
+
+        // Ограничение на ввод прогресса
         public void UpdateProgress(int newProgress)
         {
             if (newProgress < 0 || newProgress > 100)
