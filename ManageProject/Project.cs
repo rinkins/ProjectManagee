@@ -25,7 +25,7 @@ namespace ManageProject
         {
             if (newProgress < 0 || newProgress > 100)
             {
-                throw new ArgumentOutOfRangeException(nameof(newProgress), "Прогресс должен быть между 0 и 100.");
+                throw new Exception ("Прогресс должен быть между 0 и 100");
             }
             Progress = newProgress;
         }

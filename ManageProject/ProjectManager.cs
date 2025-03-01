@@ -45,8 +45,8 @@ namespace ManageProject
             }
             private void SaveProjects()
             {
-                File.WriteAllLines("projects.txt", Projects.Select(p =>
-                $"{p.Name}|{p.Description}|{p.StartDate.ToString("yyyy-MM-dd")}|{p.EndDate.ToString("yyyyMM-dd")}|{p.Progress}"));
+                File.WriteAllLines("projects.txt", Projects.Select
+                (p => $"{p.Name}|{p.Description}|{p.StartDate.ToString("yyyy-MM-dd")}|{p.EndDate.ToString("yyyyMM-dd")}|{p.Progress}"));
             }
             private void LoadProjects()
             {
@@ -61,8 +61,7 @@ namespace ManageProject
                             DateTime startDate;
                             DateTime endDate;
                             int progress;
-                            if (DateTime.TryParse(parts[2], out startDate) && DateTime.TryParse(parts[3],
-                            out endDate) && int.TryParse(parts[4], out progress))
+                            if (DateTime.TryParse(parts[2], out startDate) && DateTime.TryParse(parts[3],out endDate) && int.TryParse(parts[4], out progress))
                             {
                                 Project project = new Project(parts[0], parts[1], startDate, endDate);
                                 project.Progress = progress;
@@ -73,8 +72,6 @@ namespace ManageProject
                 }
             }
 
-
-
         [STAThread]
         static void Main()
         {
@@ -82,6 +79,7 @@ namespace ManageProject
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new ProjectForm());
         }
+
     }
 
 }
