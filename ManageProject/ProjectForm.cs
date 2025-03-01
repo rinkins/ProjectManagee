@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Drawing;
+using System.Reflection.Emit;
 
 
 namespace ManageProject
@@ -24,47 +26,64 @@ namespace ManageProject
         public ProjectForm()
         {
             this.Text = "Управление проектами";
-            this.Width = 600;
-            this.Height = 500;
+            this.Width = 437;
+            this.Height = 405;
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.BackColor = Color.Lavender;
 
             nameTextBox = new TextBox
             {
                 Location = new System.Drawing.Point(10, 10),
                 Width = 150,
-                Text = "Название"
+                Text = "Название",
+                Font = new System.Drawing.Font("Candara", 10),
+                ForeColor = System.Drawing.Color.MidnightBlue
             };
 
             descriptionTextBox = new TextBox
             {
                 Location = new System.Drawing.Point(170, 10),
                 Width = 200,
-                Text = "Описание"
+                Text = "Описание",
+                Font = new System.Drawing.Font("Candara", 10),
+                ForeColor = System.Drawing.Color.MidnightBlue
             };
 
             startDatePicker = new DateTimePicker
             {
                 Location = new System.Drawing.Point(10, 40),
-                Width = 125
+                Width = 135,
+                Font = new System.Drawing.Font("Candara", 10),
+                ForeColor = System.Drawing.Color.MidnightBlue
             };
 
             endDatePicker = new DateTimePicker
             {
-                Location = new System.Drawing.Point(150, 40),
-                Width = 125
+                Location = new System.Drawing.Point(160, 40),
+                Width = 135,
+                Font = new System.Drawing.Font("Candara", 10),
+                ForeColor = System.Drawing.Color.MidnightBlue
             };
 
             progressTextBox = new TextBox
             {
-                Location = new System.Drawing.Point(285, 40),
+                Location = new System.Drawing.Point(305, 40),
                 Width = 65,
-                Text = "Прогресс"
+                Text = "Прогресс",
+                Font = new System.Drawing.Font("Candara", 10),
+                ForeColor = System.Drawing.Color.MidnightBlue,
+                TextAlign = HorizontalAlignment.Center
             };
 
             addProjectButton = new Button
             {
                 Location = new System.Drawing.Point(10, 70),
                 Text = "Добавить",
-                Width = 100
+                Width = 100,
+                Height = 27,
+                Font = new System.Drawing.Font("Candara", 10),
+                ForeColor = System.Drawing.Color.MidnightBlue
             };
             addProjectButton.Click += AddProjectButton_Click;
 
@@ -72,7 +91,10 @@ namespace ManageProject
             {
                 Location = new System.Drawing.Point(115, 70),
                 Text = "Удалить",
-                Width = 100
+                Width = 100,
+                Height = 27,
+                Font = new System.Drawing.Font("Candara", 10),
+                ForeColor = System.Drawing.Color.MidnightBlue
             };
             removeProjectButton.Click += RemoveProjectButton_Click;
 
@@ -80,15 +102,20 @@ namespace ManageProject
             {
                 Location = new System.Drawing.Point(220, 70),
                 Text = "Обновить прогресс",
-                Width = 120
+                Width = 120,
+                Height = 27,
+                Font = new System.Drawing.Font("Candara", 10),
+                ForeColor = System.Drawing.Color.MidnightBlue
             };
             updateProgressButton.Click += UpdateProgressButton_Click;
 
             projectsListBox = new ListBox
             {
-                Location = new System.Drawing.Point(10, 100),
-                Width = 560,
-                Height = 250
+                Location = new System.Drawing.Point(10, 110),
+                Width = 400,
+                Height = 250,
+                Font = new System.Drawing.Font("Candara", 10),
+                ForeColor = System.Drawing.Color.MidnightBlue
             };
             this.Controls.Add(nameTextBox);
             this.Controls.Add(descriptionTextBox);
