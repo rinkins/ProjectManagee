@@ -1,12 +1,6 @@
-﻿using ManageProject;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Drawing;
-using System.Reflection.Emit;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace ManageProject

@@ -7,7 +7,6 @@ using System.Linq;
 
 namespace ManageProject
 {
-
         public class ProjectManager
         {
             public List<Project> Projects { get; private set; }
