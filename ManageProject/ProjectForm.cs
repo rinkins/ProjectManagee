@@ -135,16 +135,18 @@ namespace ManageProject
         private void nameTextBox_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
         {
 
-            if (!IsCyrillic(e.KeyChar))
+            if (!IsCyrillic(e.KeyChar) && !char.IsControl(e.KeyChar) && (e.KeyChar != ' '))
             {
                 e.Handled = true; 
             }
+
+
 
         }
         private void descriptionTextBox_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
         {
 
-            if (!IsCyrillic(e.KeyChar))
+            if (!IsCyrillic(e.KeyChar) && !char.IsControl(e.KeyChar) && (e.KeyChar != ' '))
             {
                 e.Handled = true;
             }

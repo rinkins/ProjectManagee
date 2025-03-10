@@ -7,7 +7,7 @@ namespace ТестированиеMP
     public class Test_Project
     {
 
-        private Project projectt;
+        private Project? projectt;
 
         [TestInitialize]
         public void Setup()

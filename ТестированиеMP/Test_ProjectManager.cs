@@ -14,8 +14,7 @@ namespace ТестированиеMP
         {
             projectmanager = new ProjectManager();
 
-            // Очистить тестовый файл перед каждым тестом
-            if (File.Exists(TestFilePath))
+            if (File.Exists(TestFilePath))   // Очистить тестовый файл перед каждым тестом
             {
                 File.Delete(TestFilePath);
             }
