@@ -3,6 +3,8 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Timers;
+using System.Xml.Serialization;
 
 
 namespace ManageProject
@@ -42,10 +44,20 @@ namespace ManageProject
                 project.UpdateProgress(newProgress);
                 SaveProjects();
             }
-            private void SaveProjects()
+            public void UpdateProjectRemember(Project project, int newRemember)
+            {
+                if (project == null)
+                {
+                    throw new ArgumentNullException(nameof(project));
+                }
+                project.UpdateRemember(newRemember);
+                SaveProjects();
+            }
+
+        private void SaveProjects()
             {
                 File.WriteAllLines("projects.txt", Projects.Select
-                (p => $"{p.Name}|{p.Description}|{p.StartDate.ToString("yyyy-MM-dd")}|{p.EndDate.ToString("yyyyMM-dd")}|{p.Progress}"));
+                (p => $"{p.Name}|{p.Description}|{p.StartDate.ToString("yyyy-MM-dd")}|{p.EndDate.ToString("yyyy-MM-dd")}|{p.Progress}|{p.Remember}"));
             }
             private void LoadProjects()
             {
@@ -55,15 +67,17 @@ namespace ManageProject
                     foreach (var line in lines)
                     {
                         var parts = line.Split('|');
-                        if (parts.Length == 5)
+                        if (parts.Length == 6)
                         {
                             DateTime startDate;
                             DateTime endDate;
                             int progress;
-                            if (DateTime.TryParse(parts[2], out startDate) && DateTime.TryParse(parts[3],out endDate) && int.TryParse(parts[4], out progress))
+                            int remember;
+                            if (DateTime.TryParse(parts[2], out startDate) && DateTime.TryParse(parts[3],out endDate) && int.TryParse(parts[4], out progress) && int.TryParse(parts[5], out remember))
                             {
                                 Project project = new Project(parts[0], parts[1], startDate, endDate);
                                 project.Progress = progress;
+                                project.Remember = remember;
                                 Projects.Add(project);
                             }
                         }
